@@ -99,7 +99,9 @@ namespace SimpleMqttServer
 
             var mqttServer = new MqttFactory().CreateMqttServer();
             mqttServer.StartAsync(optionsBuilder.Build());
-            Console.WriteLine("test");
+
+            Console.WriteLine("The MQTT Broker Server is now up and running!");
+
             Console.ReadLine();
         }
 
