@@ -14,7 +14,10 @@
 ## General beskrivelse
 Projektet handler om at lave en MQTT Broker server, som er lavet i .NET kode. MQTT Broker serveren kan smide den modtagende data over i en database og dertil skal der lave en WebAPI, som kan hente dataen fra databasen.
 MQTT Brokeren vil modtage temperatur og luftfugtigheds data fra et MKR WIFI1010 board og det vil så blive muligt at hente dataen ned på en client (Web/Mobile), ved at kalde WebAPI'et.
-Dette projekt er blevet hosted på en Raspberry Pi.
+
+Dette projekt er blevet hosted på en Raspberry Pi og her er det vigtigt at have installeret .NET runtime på Raspberry Pi'en. I vores tilfælde valgte vi .NET 5.0.x
+
+&nbsp;
 
 Projektet tager udgangspunkt i følgende eksempel projekt: [SimpleMqttServer](https://github.com/SeppPenner/SimpleMqttServer)
 
@@ -63,6 +66,10 @@ private static Config ReadConfiguration(string currentPath)
 
 ## Stage 1 demo
 
-I første stage har vi fået sat MQTT broker serveren op
+I første stage har vi fået sat MQTT broker serveren projektet op og gjort så den kører på Raspberry Pi'en.
+Her var det vigtigt at have installeret .NET runtime på Raspberry Pi'en. Vi brugte følgende version: .NET 5.0.
+Derefter publish'ede vi projektet på den computer hvor vi programmerede på (Windows 10 pc) og under publish valgte vi publish til folder og med følgende, som er set på billedet under.
 
+![](folderPublishScreenshot.png)
+![](readmeImages/screenshotMQTT2.jpg)
 ![](readmeImages/screenshotMQTT.png)
