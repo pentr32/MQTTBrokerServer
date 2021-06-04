@@ -8,9 +8,9 @@
   * Dette forklare hvordan man starter ud med [SimpleMqttServer](https://github.com/SeppPenner/SimpleMqttServer) projektet og gør så det kan fungere på ens Raspberry Pi, med Raspberry Pi styresystemet.
 * Stage 1 demo
   * Viser og beskriver hvad vi fik til at virke i første del af opgaven.
-  	* Folder Publish Profile Settings
-  	* MQTT Broker server kørende på Raspberry Pi
-  	* MQTT Client på anden pc, som bruger MQTT Broker serveren
+  	* Billede: Folder Publish Profile Settings
+  	* Billede: MQTT Broker server kørende på Raspberry Pi
+  	* Billede: MQTT Client på anden pc, som bruger MQTT Broker serveren
 
 &nbsp;&nbsp;
 
