@@ -15,7 +15,8 @@ namespace SimpleMqttServer
     using System.Linq;
     using System.Reflection;
     using System.Text;
-
+    using DataLayer;
+    using DataLayer.Entities;
     using MQTTnet;
     using MQTTnet.Protocol;
     using MQTTnet.Server;
@@ -44,7 +45,7 @@ namespace SimpleMqttServer
         public static void Main()
         {
             //var currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var currentPath = "/home/pi/Desktop/SimpleMQTTServer/SimpleMqttServer-master/src/SimpleMqttServer";
+            var currentPath = "/home/pi/Desktop/MQTTBroker";
 
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -152,7 +153,7 @@ namespace SimpleMqttServer
         ///     Logs the message from the MQTT message interceptor context.
         /// </summary>
         /// <param name="context">The MQTT message interceptor context.</param>
-        private static void LogMessage(MqttApplicationMessageInterceptorContext context)
+        private async static void LogMessage(MqttApplicationMessageInterceptorContext context)
         {
             if (context == null)
             {
@@ -168,6 +169,23 @@ namespace SimpleMqttServer
                 payload,
                 context.ApplicationMessage?.QualityOfServiceLevel,
                 context.ApplicationMessage?.Retain);
+
+            if (context.ApplicationMessage?.Topic == "measurements")
+            {
+                using (var _context = new MeasurementsContext())
+                {
+                    string[] tempHum = payload.Split("|");
+                    Measurement measurement = new Measurement
+                    {
+                        Temperature = float.Parse(tempHum[0]),
+                        Humidity = float.Parse(tempHum[1]),
+                        TimeCreated = DateTime.Now
+                    };
+
+                    await _context.AddAsync(measurement);
+                    await _context.SaveChangesAsync();
+                }
+            }
         }
 
         /// <summary> 
