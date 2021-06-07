@@ -1,11 +1,16 @@
 # MQTT Broker Server
 
+![](readmeImages/screenshot1.jpg)
+
 **Indholdsfortegnelse:**
 
 * General beskrivelse
   * Dette afsnit beskriver overordnet om projektet, så man får en forståelse for hvad projektet handler om og hvad projektet tager udgangspunkt i.
 * Opsætning af eksempel projektet (SimpleMqttServer)
   * Dette forklare hvordan man starter ud med [SimpleMqttServer](https://github.com/SeppPenner/SimpleMqttServer) projektet og gør så det kan fungere på ens Raspberry Pi, med Raspberry Pi styresystemet.
+* Opsætning af Raspberry Pi
+  * Opsætning af hostname 
+  * Opsætning af remote 
 * Stage 1 demo
   * Viser og beskriver hvad vi fik til at virke i første del af opgaven.
   	* Billede: Folder Publish Profile Settings
@@ -64,6 +69,70 @@ private static Config ReadConfiguration(string currentPath)
 
 ...
 ```
+
+&nbsp;
+
+## Opsætning af Raspberry Pi
+
+Følgende er blevet gjort på Raspberry Pi'en:
+* Installeret .NET 5.0 Runtime
+* Opsætning af hostname
+* Installeret MariaDB
+* Konfigureret MariaDB til at kunne remote(til EF Core Migration og Update Database fra anden pc)
+* Opsætning af firewall
+* Konfigureret en bruger på MariaDB
+
+
+### Opsætning af hostname
+
+Vi har ændret hostname på Raspberry Pi'en, da de andre gruppers Raspberry Pi højst sandsynligt også havde samme hostname ("raspberrypi") og var koblet på samme Access Point. 
+
+Dette kunne muligtvis give problemer, hvis man prøvede at connecte til MQTT Broker Serveren, via hostnamet
+
+Guide til ændring af hostname: [Link](https://blog.jongallant.com/2017/11/raspberrypi-change-hostname/)
+
+
+### Opsætning af remote
+
+For at kunne add-migration og update database, til vores MariaDB database på Raspberry Pi'en, fra vores solution på windows PC'en, så skal der kunne connectes remote til MariaDB serveren og ikke kun via localhost.
+
+Her skal der så lige sættes nogle ting op på Raspberry Pi'en, hvor MariaDB serveren køre.
+
+Når MariaDB serveren er blevet installeret, så skal der gøres følgende:
+
+Åben terminal og skriv:
+```shell
+cd /etc/mysql/mariadb.conf.d
+```
+
+Skriv derefter:
+
+```shell
+sudo nano 50-server.cnf
+```
+
+Udkommenter nu den linje vist med pilen på billedet under. Dette gøres ved at tilføje # foran "bind-address"
+
+![](readmeImages/screenshot3.jpg)
+
+
+Nu skal der så restartes for MySQL/MariaDB serveren. Det gøres ved at skrive følgende:
+
+```shell
+sudo service mysqld stop
+```
+
+Skriv derefter:
+
+```shell
+sudo service mysqld start
+```
+
+Nu skulle MySQL/MariaDB serveren være oppe at køre igen.
+Se eventuelt billedet under, markeret med rød boks og se bort fra alt andet der sker på screenshottet.
+
+![](readmeImages/screenshot4.jpg)
+
 
 &nbsp;
 
