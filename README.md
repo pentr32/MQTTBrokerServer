@@ -92,6 +92,39 @@ Dette kunne muligtvis give problemer, hvis man prøvede at connecte til MQTT Bro
 Guide til ændring af hostname: [Link](https://blog.jongallant.com/2017/11/raspberrypi-change-hostname/)
 
 
+### Opsætning af firewall
+
+Først tjekkes der lige om ufw firewall allerede er installeret, hvis ikke, så installer det.
+
+Dette kan gøres ved at følge følgende guide: [Link](https://dev.to/delightfullynerdy/bash-ufw-command-not-found-ubuntu-18-04-1agh)
+
+Når alt dette er gjort, så skal IP'en på den computer der vil add-migration og update database fra, tilføjes til allow listen på firewall'en.
+
+For at tilføje en IP, som skal allowes på firewall'en, så skal der skrives følgende i terminal (ændre IP'en til den der skal allowes):
+```shell
+sudo ufw allow from 192.168.42.15 to any port 3306
+```
+
+Skriv derefter følgende, for at reload:
+```shell
+sudo ufw reload
+```
+
+&nbsp;
+
+Husk også at allow IP'en på den embedded board (MKR WIFI 1010)
+
+Dette gjorde vi på følgende måde
+```shell
+sudo ufw allow from 192.168.42.20
+```
+
+Skriv derefter følgende, for at reload:
+```shell
+sudo ufw reload
+```
+
+
 ### Opsætning af remote
 
 For at kunne add-migration og update database, til vores MariaDB database på Raspberry Pi'en, fra vores solution på windows PC'en, så skal der kunne connectes remote til MariaDB serveren og ikke kun via localhost.
@@ -132,6 +165,7 @@ Nu skulle MySQL/MariaDB serveren være oppe at køre igen.
 Se eventuelt billedet under, markeret med rød boks og se bort fra alt andet der sker på screenshottet.
 
 ![](readmeImages/screenshot4.jpg)
+
 
 
 &nbsp;
