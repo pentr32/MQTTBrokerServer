@@ -183,7 +183,19 @@ Projektet har følgende libraries:
 * Wire
 * SPI
 
+Projektet bruger følgende perifære enheder:
+* DHT11 (Temperature & Himidity sensor)
+
+&nbsp;
+
 Her er linket til embedded projektet på GitHub: [EmbeddedMQTT](https://github.com/nitram1337/EmbeddedMQTT)
+
+&nbsp;
+
+Under ses billedet af boardet og DHT11'eren, som er koblet på og hvordan det er koblet til.
+
+![](readmeImages/screenshot2.jpg)
+
 
 &nbsp;
 
