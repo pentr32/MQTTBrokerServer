@@ -170,6 +170,7 @@ namespace SimpleMqttServer
                 context.ApplicationMessage?.QualityOfServiceLevel,
                 context.ApplicationMessage?.Retain);
 
+
             if (context.ApplicationMessage?.Topic == "measurements")
             {
                 using (var _context = new MeasurementsContext())
