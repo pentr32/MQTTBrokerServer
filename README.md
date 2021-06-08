@@ -168,6 +168,20 @@ Se eventuelt billedet under, markeret med rød boks og se bort fra alt andet der
 ![](readmeImages/screenshot4.jpg)
 
 
+&nbsp;
+
+## Opsætning af embedded boardet
+
+Det embedded board vi bruger er et MKR WIFI 1010.
+Det er koblet til samme access point, som vores Raspberry Pi og vi har lavet projektet ved hjælp af Platform IO til Visual Studio Code.
+
+Projektet har følgende libraries:
+* WiFiNINA
+* MQTT
+* DHT
+* Adafruit_Sensor
+* Wire
+
 
 &nbsp;
 
