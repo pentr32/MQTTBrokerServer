@@ -13,10 +13,10 @@
   * **Opsætning af hostname** 
   * **Opsætning af remote** 
 * **Stage 1 demo**
-  * *Viser og beskriver hvad vi fik til at virke i første del af opgaven.*
-  	* Billede: Folder Publish Profile Settings
-  	* Billede: MQTT Broker server kørende på Raspberry Pi
-  	* Billede: MQTT Client på anden pc, som bruger MQTT Broker serveren
+  * *Dette afsnit viser og beskriver hvad vi fik til at virke i første del af opgaven. Blandt andet publish af MQTT Broker projektet og opsætningen af dette på Raspberry Pi'en*
+* **Stage 2 demo**
+  * *Dette afsnit viser og beskriver hvad vi fik til at virke i anden del af opgaven. Blandt andet at det embedded board kan publish temperatur og luftfugtigheds dataen op til MQTT Broker serveren og at den så ligger det ind i MariaDB databasen*
+ 
 
 &nbsp;&nbsp;
 
@@ -177,7 +177,8 @@ I første stage har vi fået sat MQTT broker serveren projektet op og gjort så 
 Her var det vigtigt at have installeret .NET runtime på Raspberry Pi'en. Vi brugte følgende version: .NET 5.0.
 Derefter publish'ede vi projektet på den computer hvor vi programmerede på (Windows 10 pc) og under publish valgte vi publish til folder og med følgende, som er set på billedet under
 
-### Folder Publish Profile Settings
+**Folder Publish Profile Settings:**
+
 ![](readmeImages/folderPublishScreenshot.png)
 
 &nbsp;
@@ -200,7 +201,7 @@ dotnet SimpleMqttServer.dll
 På billedet under kan ses vores MQTT Broker server, som er kørt via terminalen.
 Her kan også ses at der bliver published 2 beskeder til brokeren.
 
-### MQTT Broker server kørende på Raspberry Pi
+**MQTT Broker server kørende på Raspberry Pi:**
 ![](readmeImages/screenshotMQTT2.jpg)
 
 &nbsp;
@@ -208,7 +209,7 @@ Her kan også ses at der bliver published 2 beskeder til brokeren.
 På billedet under kan der ses MQTTX som kører på en Windows 10 maskine og som publisher et 2 tal op til vores MQTT Broker server, som kører på Raspberry Pi'en og derefter får vores MQTT Client 2 tallet tilbage igen, da den også Subscriber på den samme Topic, som der blev Published til.
 Billedet under passer ikke med det over, i forhold til at det der bliver sendt op ikke er det samme, som der står der er modtaget på billedet over - det er pga. at billederne er taget på forskellige tidspunkter.
 
-### MQTT Client på anden pc, som bruger MQTT Broker serveren
+**MQTT Client på anden pc, som bruger MQTT Broker serveren:**
 ![](readmeImages/screenshotMQTT.png)
 
 
