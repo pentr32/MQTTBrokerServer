@@ -222,14 +222,14 @@ Vi har også skrevet lidt om i koden til MQTT Broker serveren og tilføjet nogle
 
 Under kan der ses vores MQTT Broker server, som kører på vores Raspberry Pi. Her kan der ses at en ny client connecter og her kan også ses at en ny message bliver published op til vores MQTT Broker server.
 
-![](readmeImages/screenshotMQTT5.png)
+![](readmeImages/screenshot5.jpg)
 
 På billedet under kan man se en udskrift til terminalen af det, som der også bliver published op til vores MQTT Broker.
 
-![](readmeImages/screenshotMQTT6.png)
+![](readmeImages/screenshot6.jpg)
 
 På billedet under kan man se, at værdierne bliver lagt ind i vores MariaDB database, som blev sendt fra vores MKR WIFI 1010 board, via MQTT.
 
-![](readmeImages/screenshotMQTT7.png)
+![](readmeImages/screenshot7.jpg)
 
 
