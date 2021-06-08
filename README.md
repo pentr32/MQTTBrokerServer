@@ -209,3 +209,27 @@ Billedet under passer ikke med det over, i forhold til at det der bliver sendt o
 
 ### MQTT Client på anden pc, som bruger MQTT Broker serveren
 ![](readmeImages/screenshotMQTT.png)
+
+
+
+&nbsp;
+
+## Stage 2 demo
+
+I andet stage har vi koblet det embedded MKR WIFI 1010 board til og skrevet koden, så den kan sende op til vores egen MQTT Broker server.
+
+Vi har også skrevet lidt om i koden til MQTT Broker serveren og tilføjet nogle ting, så nu når MQTT Broker Serveren modtager en publish fra Topic'en measurements, så smider den det over i MariaDB databasen.
+
+Under kan der ses vores MQTT Broker server, som kører på vores Raspberry Pi. Her kan der ses at en ny client connecter og her kan også ses at en ny message bliver published op til vores MQTT Broker server.
+
+![](readmeImages/screenshotMQTT5.png)
+
+På billedet under kan man se en udskrift til terminalen af det, som der også bliver published op til vores MQTT Broker.
+
+![](readmeImages/screenshotMQTT6.png)
+
+På billedet under kan man se, at værdierne bliver lagt ind i vores MariaDB database, som blev sendt fra vores MKR WIFI 1010 board, via MQTT.
+
+![](readmeImages/screenshotMQTT7.png)
+
+
