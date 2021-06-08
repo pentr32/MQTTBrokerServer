@@ -181,7 +181,9 @@ Projektet har følgende libraries:
 * DHT
 * Adafruit_Sensor
 * Wire
+* SPI
 
+Her er linket til embedded projektet på GitHub: [EmbeddedMQTT](https://github.com/nitram1337/EmbeddedMQTT)
 
 &nbsp;
 
