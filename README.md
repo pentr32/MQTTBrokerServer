@@ -4,15 +4,16 @@
 
 **Indholdsfortegnelse:**
 
-* General beskrivelse
-  * Dette afsnit beskriver overordnet om projektet, så man får en forståelse for hvad projektet handler om og hvad projektet tager udgangspunkt i.
-* Opsætning af eksempel projektet (SimpleMqttServer)
-  * Dette forklare hvordan man starter ud med [SimpleMqttServer](https://github.com/SeppPenner/SimpleMqttServer) projektet og gør så det kan fungere på ens Raspberry Pi, med Raspberry Pi styresystemet.
-* Opsætning af Raspberry Pi
-  * Opsætning af hostname 
-  * Opsætning af remote 
-* Stage 1 demo
-  * Viser og beskriver hvad vi fik til at virke i første del af opgaven.
+* **General beskrivelse**
+  * *Dette afsnit beskriver overordnet om projektet, så man får en forståelse for hvad projektet handler om og hvad projektet tager udgangspunkt i.*
+* **Opsætning af eksempel projektet (SimpleMqttServer)**
+  * *Dette forklare hvordan man starter ud med [SimpleMqttServer](https://github.com/SeppPenner/SimpleMqttServer) projektet og gør så det kan fungere på ens Raspberry Pi, med Raspberry Pi styresystemet.*
+* **Opsætning af Raspberry Pi**
+  * *Dette afsnit beskriver hvordan vi har opsat nogle af de forskellige ting på vores Raspberry Pi*
+  * **Opsætning af hostname** 
+  * **Opsætning af remote** 
+* **Stage 1 demo**
+  * *Viser og beskriver hvad vi fik til at virke i første del af opgaven.*
   	* Billede: Folder Publish Profile Settings
   	* Billede: MQTT Broker server kørende på Raspberry Pi
   	* Billede: MQTT Client på anden pc, som bruger MQTT Broker serveren
