@@ -21,6 +21,8 @@
   * *Dette afsnit viser og beskriver hvad vi fik til at virke i anden del af opgaven. Blandt andet at det embedded board kan publish temperatur og luftfugtigheds dataen op til MQTT Broker serveren og at den så ligger det ind i MariaDB databasen*
 * **Stage 3 demo**
   * *Dette afsnit viser og beskriver hvad vi fik til at virke i trejde del af opgaven. Blandt andet har vi tilføjet en WebAPI til projektet og gjort så den hiver ned fra vores MariaDB database og mobil appen kan hente dataen fra API'et*
+* **Krav/Analyse/Acceptance Test**
+  * *Dette afsnit er vore krav, vores analyse og vores acceptance tests*
  
 
 &nbsp;
@@ -44,6 +46,7 @@ SimpleMqttServer projektet bruger følgende MQTTnet nugets:
 
 Disse nugets er fra følgende git projekt: [MQTTnet](https://github.com/chkr1011/MQTTnet)
  
+Projektet er lavet af Martin Sonne og Robert Iulian Zaharia
 
 &nbsp;
 
@@ -307,3 +310,178 @@ På billedet under kan man se seneste måling af temperatur og luftfugtighed, so
 På billedet under kan man se de seneste målinger af temperatur og luftfugtighed og som er filtreret på "Latest Hour". Målingerne er blevet hevet ned fra vores Web API, der ligger på vores Raspberry Pi
 
 ![](readmeImages/screenshot9.jpg)
+ 
+
+&nbsp;
+
+&nbsp;
+
+## Kravspec
+
+ 
+
+### User stories
+>1.    Som bruger vil jeg gerne kunne se seneste temperature og luftfugtighed på mobil appen.
+>2.    Som bruger vil jeg gerne kunne se en graf over den seneste times temperature og luftfugtigheds målinger.
+>3.    Som bruger vil jeg gerne kunne se en graf over den seneste dags temperature og luftfugtigheds målinger.
+>4.    Som bruger vil jeg gerne kunne se en graf over den seneste uges temperature og luftfugtigheds målinger.
+>5.    Som bruger vil jeg gerne kunne vælge om målingerne skal være for seneste time, dag eller uge.
+
+ &nbsp;
+
+### Krav for system
+>6.    Der skal kunne henter temperature og luftfugtighed fra en embedded board.
+>7.    Embedded board skal kunne sende målinger til serveren hver 10 sekunder.
+>8.    Embedded board skal kunne sender målinger via MQTT protokol til en MQTT broker server.
+>9.    MQTT Broker serveren skal kunne gemme målinger på en database.
+>10. En mobil app skal kunne henter målinger fra databasen vha. En API.
+>11. MQTT Broker server, Database og API’en skal være på den samme enhed.
+
+ &nbsp;
+
+### Kravanalysering
+Analysering for embedded board til **krav 6.**
+
+ 
+
+**Problemstilling**
+* Der skal bruges en enhed som kan hoste vores *MQTT Broker server*, *Database* og *API*. Der er ikke så mange personer som skal bruge den.
+
+ 
+
+**Kandidater**
+*    Raspberry PI
+*    Dell Server R240 (Intel Xeon E-2200, 64 GB Ram, 4 HDD 56 TB, Ubuntu Server, S140 RAID, Rack Server)
+
+ 
+
+**Kandidater Analyse**
+| Raspberry PI | Dell Server  |
+|----------|---------|
+| **Fordele:** *Fylder slet ikke så meget at opbevare*, *Nemt til opgradering*, *Den støjer ikke så meget*| **Fordele:** *Hurtiger*, *Modulær*|
+| **Ulemper:** *Begrænset mængde resources*, *Bliver hurtiger varm*| **Ulemper:** *Fylder mere opbevare*, *Den er støjende* |
+
+ 
+
+**Konklusion**
+* *Raspberry PI*
+
+ 
+
+**Begrundelse**
+* Uanset hvor kraftig den *Dell Server* er. Tinget er at vi har slet ikke brug for så en kraftig server, så raspberry PI den kan jo sagtens klare arbejdet.
+
+
+
+<hr/>
+
+&nbsp;
+
+
+Analysering for embedded board til **krav 1.**
+
+ 
+
+**Problemstilling**
+* Der skal være et embedded board som kan måle og sender temperature og luftfugtighed via MQTT til en MQTT Broker server 
+
+ 
+
+**Kandidater**
+*    ATMega 2560
+*    MKR Wifi 1010
+
+ 
+
+**Kandidater Analyse**
+| ATMega 2560 | MKR Wifi 1010  |
+|----------|---------|
+| **Fordele:** *Flere porter* | **Fordele:** *Fylder mindre*, *Har Wifi*, 48 Mhz clock speed|
+| **Ulemper:** *Fylder mere*, *Ingen Wifi*, 16 Mhz clock speed | **Ulemper:** *Ikke så manger porter* |
+
+ 
+
+**Konklusion**
+* *MKR Wifi 1010*
+
+ 
+
+**Begrundelse**
+* Vi har valgt *MKR Wifi 1010* pga. den fylder mindre, vi har ikke brug for så mange porter og den har wifi antena og det er det vi har brug for at sender data op til vores *MQTT Broker server*.
+
+ 
+
+<hr/>
+
+&nbsp;
+
+Analysering for embedded board til **krav 4.**
+
+ 
+
+**Problemstilling**
+* Der skal installeres en database som skal køres på en Raspberry PI og som bliver brugt af vores MQTT Broker og vores Web API som også bliver hosted på samme enhed.
+
+ 
+
+**Kandidater**
+*    MariaDB
+*    MS SQL
+
+ 
+
+**Kandidater Analyse**
+| MariaDB | MS SQL  |
+|----------|---------|
+| **Fordele:** *Open-Source*, *Den kan køres på flere OS'er*, *Den understøtter flere programmerings sprog*, *Den kræver færre resource* | **Fordele:** *Hurtiger*, *Installation er streamlined*|
+| **Ulemper:** *Mange ændringer skal laves for at sætte det op sådan som man vil bruge det*| **Ulemper:** *Fylder mere*, *commercial* |
+
+ 
+
+**Konklusion**
+* *MariaDB*
+
+ 
+
+**Begrundelse**
+* Vi har valgt *MariaDB* fordi den skal hostes på en *Raspberry PI* så har begrænset mængde resourcer og plads og også fordi der skal gøres ekstra ting for at installer *MS SQL* på en *Raspberry PI* og da vi ikke har erfaring med at installer *MS SQL* før.
+
+ 
+
+<hr/>
+
+&nbsp;
+
+## Acceptance test
+|Test nr.| Krav | Mål | Handling | Forventet resultat | Resultat |
+|--|--|--|--|--|--|
+|1 | 1 | Som bruger vil jeg gerne kunne se seneste temperature og luftfugtighed på mobil appen | Man åbner mobil appen og så klikker man på flyout menu i venstre side og bagefter man klikker på Overview. Du tager med et andet måleapperat, som er placeret samme sted, som den embedded controller og må maks afvige +/- 1 grad celsius. | Nu man kan se seneste måling af temperature og luftfugtighed som skal stemme overens med en måling. | ![enter image description here](https://i.imgur.com/4aLYnfw.png) |
+| 2 | 2 | Som bruger vil jeg gerne kunne se en graf over den seneste times temperature og luftfugtigheds målinger. | Man åbner mobil appen og så klikker man på flyout menu i venstre side og bagefter man klikker på Graph Measurements. Du tager måleapperat og skriv målinger ned hvor hver time. | Nu man kan se seneste times temperature og luftfugtigheds målinger. | ![enter image description here](https://i.imgur.com/4aLYnfw.png) |
+| 3 | 5 | Som bruger vil jeg gerne kunne vælge om målingerne skal være for seneste time, dag eller uge. | Man åbner mobil appen og så klikker man på flyout menu i venstre side og bagefter man klikker på Graph Measurements. På den side har du i toppen en dropdown, man klikker på den og så har du mulighed for at kunne se målinger for seneste time, dag eller uge. | Nu man kan se seneste time, dag eller uges temperature og luftfugtigheds målinger. |![enter image description here](https://i.imgur.com/4aLYnfw.png) |
+| 4 | 6 | Der skal kunne henter temperature og luftfugtighed fra en embedded board. | Man skal først tjekke om Embedded board og Raspberry PI er tænd. Ind på raspberry PI man åbner terminal ved at klikke på den fjerde ikon i venstre side ned og ind i den ny vindue man navigere til den rigtig folder ved at indtaste komandoen **cd Desktop/MQTTBroker/** . Her man skal kører programmet ved at indtaste **dotnet SimpleMqttServer.dll** og så trykker man enter. Hvis du kan se i vinduen *The MQTT Broker Server is now up and running!* så dvs. at programmet kører nu og den henter målinger fra Embedded board hver 10 sekunder.| Målinger skal kunne ses hver 10 sekunder ved teksten **payload=** |![enter image description here](https://i.imgur.com/4aLYnfw.png) |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
