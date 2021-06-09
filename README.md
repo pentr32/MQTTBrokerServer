@@ -1,6 +1,8 @@
 # MQTT Broker Server
 
-![](readmeImages/screenshot1.jpg)
+![](readmeImages/overview.png)
+
+&nbsp;
 
 **Indholdsfortegnelse:**
 
@@ -18,7 +20,9 @@
   * *Dette afsnit viser og beskriver hvad vi fik til at virke i anden del af opgaven. Blandt andet at det embedded board kan publish temperatur og luftfugtigheds dataen op til MQTT Broker serveren og at den så ligger det ind i MariaDB databasen*
  
 
-&nbsp;&nbsp;
+&nbsp;
+
+&nbsp;
 
 ## General beskrivelse
 Projektet handler om at lave en MQTT Broker server, som er lavet i .NET kode. MQTT Broker serveren kan smide den modtagende data over i en database og dertil skal der lave en WebAPI, som kan hente dataen fra databasen.
