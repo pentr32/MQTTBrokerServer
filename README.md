@@ -13,11 +13,14 @@
 * **Opsætning af Raspberry Pi**
   * *Dette afsnit beskriver hvordan vi har opsat nogle af de forskellige ting på vores Raspberry Pi*
   * **Opsætning af hostname** 
-  * **Opsætning af remote** 
+  * **Opsætning af remote**
+  * **Opsætning af firewall** 
 * **Stage 1 demo**
   * *Dette afsnit viser og beskriver hvad vi fik til at virke i første del af opgaven. Blandt andet publish af MQTT Broker projektet og opsætningen af dette på Raspberry Pi'en*
 * **Stage 2 demo**
   * *Dette afsnit viser og beskriver hvad vi fik til at virke i anden del af opgaven. Blandt andet at det embedded board kan publish temperatur og luftfugtigheds dataen op til MQTT Broker serveren og at den så ligger det ind i MariaDB databasen*
+* **Stage 3 demo**
+  * *Dette afsnit viser og beskriver hvad vi fik til at virke i trejde del af opgaven. Blandt andet har vi tilføjet en WebAPI til projektet og gjort så den hiver ned fra vores MariaDB database og mobil appen kan hente dataen fra API'et*
  
 
 &nbsp;
