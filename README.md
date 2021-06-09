@@ -40,6 +40,9 @@ SimpleMqttServer projektet bruger følgende MQTTnet nugets:
 * MQTTnet.Server
 
 Disse nugets er fra følgende git projekt: [MQTTnet](https://github.com/chkr1011/MQTTnet)
+ 
+
+&nbsp;
 
 &nbsp;
 
@@ -74,6 +77,9 @@ private static Config ReadConfiguration(string currentPath)
 
 ...
 ```
+ 
+
+&nbsp;
 
 &nbsp;
 
@@ -170,7 +176,9 @@ Nu skulle MySQL/MariaDB serveren være oppe at køre igen.
 Se eventuelt billedet under, markeret med rød boks og se bort fra alt andet der sker på screenshottet.
 
 ![](readmeImages/screenshot4.jpg)
+ 
 
+&nbsp;
 
 &nbsp;
 
@@ -199,7 +207,9 @@ Her er linket til embedded projektet på GitHub: [EmbeddedMQTT](https://github.c
 Under ses billedet af boardet og DHT11'eren, som er koblet på og hvordan det er koblet til.
 
 ![](readmeImages/screenshot2.jpg)
+ 
 
+&nbsp;
 
 &nbsp;
 
@@ -244,7 +254,9 @@ Billedet under passer ikke med det over, i forhold til at det der bliver sendt o
 **MQTT Client på anden pc, som bruger MQTT Broker serveren:**
 ![](readmeImages/screenshotMQTT.png)
 
+ 
 
+&nbsp;
 
 &nbsp;
 
@@ -265,5 +277,30 @@ På billedet under kan man se en udskrift til terminalen af det, som der også b
 På billedet under kan man se, at værdierne bliver lagt ind i vores MariaDB database, som blev sendt fra vores MKR WIFI 1010 board, via MQTT.
 
 ![](readmeImages/screenshot7.jpg)
+ 
 
+&nbsp;
 
+&nbsp;
+
+## Stage 3 demo
+
+I trejde stage har vi tilføjet en Web API til projektet, som hiver målinger ned fra den samme database, som vores MQTT Broker server den smider målingerne op på.
+
+Web API er tilføjet til projektet, på branchen "addingAPI"
+
+Derefter har vi så lavet lidt om i vores Xamarin Forms projekt, som vi lavede på App Programmerings kurset.
+
+Så nu kan mobil appen hive dataen ned fra vores Web API med seneste måling og med filtrering af om man vil se graf for seneste time, dag eller uges målinger.
+
+På billedet under kan man se, at værdierne bliver modtaget på vores MQTT Broker server på den øverste terminal og på den nederste terminal kan ses vores Web API, som kører.
+
+![](readmeImages/screenshot11.jpg)
+
+På billedet under kan man se seneste måling af temperatur og luftfugtighed, som er blevet hevet ned fra vores Web API, der ligger på vores Raspberry Pi
+
+![](readmeImages/screenshot8.jpg)
+
+På billedet under kan man se de seneste målinger af temperatur og luftfugtighed og som er filtreret på "Latest Hour". Målingerne er blevet hevet ned fra vores Web API, der ligger på vores Raspberry Pi
+
+![](readmeImages/screenshot9.jpg)
